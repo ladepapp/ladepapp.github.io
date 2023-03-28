@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <title>Ladep / Laravel Deployer</title>
+
+    <!-- Bootstrap -->
+    <link href="/components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" ladep="1" />
+    <link href="/css/style.css" rel="stylesheet" ladep="1" />
+
+    <script type="text/javascript" src="/components/jquery/dist/jquery.js" ladep="1"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--
+    <script type="text/javascript" src="/components/bootstrap/dist/js/bootstrap.js" ladep="0"></script>
+    -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--
+    <script type="text/javascript" src="/components/html5shiv/dist/html5shiv.js" ladep="0"></script>
+    <script type="text/javascript" src="/components/respond/src/respond.js" ladep="0"></script>
+    -->
+    <![endif]-->
+
+    <!--
+    <script type="text/javascript" src="/components/angular/angular.js" ladep="0"></script>
+    -->
+</head>
+<body>
+
+<a name="top"></a>
+
+<div class="container-fluid">
+    <div class="row header">
+        @if ( '/' != $uri && '' != $uri )
+        <div class="hback">
+            <a href="/" class="wlink"><img src="/images/nav_back.png" border="0"/></a>
+        </div>
+        @else
+        <div class="logo">
+            <a href="/">
+                <img src="/images/rocketship_icon_ladep_text.png" />
+            </a>
+        </div>
+        @endif
+        <div class="hcnt text-right">
+            <a href="/#sourcecode" class="wlink">Source Code</a>
+            <a href="/docs" class="wlink">Documentation</a>
+        </div>
+        <div class="hmenu nav-menu-icon text-right">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid roundtop" style="height: 5px;"></div>
+
+
+<div class="container-fluid">
+    <div class="row intro">
+        <div class="i-icon text-left">
+            <img src="/images/rocketship_icon_ladep.png" border="0" />
+        </div>
+        <div class="i-text">
+            <p class="lead">
+                <strong>Ladep</strong> is the world's best deployer for Laravel framework. It's the best way to deploy your Laravel projects. And definitely, Ladep is open source, secure and easy-to-use. Learn more about <a href="/docs#howitworks" class="uline">How It Works</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row mainbutton">
+        <div class="text-center">
+            <a href="#install" class="hbtn text-uppercase">Install</a>
+            &nbsp;
+            <a href="/docs" class="hbtn text-uppercase">Documentation</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row feature">
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Open source</div>
+                <div class="text">
+                    <p>Ladep is totally open source software. It lives for the world's best deploy tool of Laravel framework. And, it's licensed under <a class="uline" href="https://github.com/dekuan/ladep/blob/master/LICENSE"><em>Apache 2.0 License</em></a>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Designed for Laravel</div>
+                <div class="text">
+                    <p>Ladep was designed for deploying the projects written by Laravel Framework. In other words, Ladep can only works for the projects written by Laravel framework.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Secure</div>
+                <div class="text">
+                    <p>Ladep transmits all data via <code>SSH</code>, it's extreme secure because <code>SSH</code> provides a secure channel over an unsecured network between client and servers. <a class="uline" href="https://en.wikipedia.org/wiki/Secure_Shell">Learn more about SSH</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Deploy with one-key</div>
+                <div class="text">
+                    <p>With powerful Ladep, you'll be able to easily build your project by specified tag/version from the git repository, and then, deploy it to multi-server with one-key.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Rollback with one-key</div>
+                <div class="text">
+                    <p>At any time, you can rollback your project to any tags/versions deployed by Ladep before for multi-server with one-key. All will be done in seconds, automatically.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Compress/confuse JS</div>
+                <div class="text">
+                    <p>Goodbye <code>gulp.js</code>, goodbye <code>Grunt</code>. Now, the only things to do for compressing and confusing <code>JavaScript</code> is adding <code>ladep=1</code> to HTML tag <code>&lt;script&gt;</code>, there's nothing else to do. So, it's totally transparent to developers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Compress CSS</div>
+                <div class="text">
+                    <p>The same things for compressing <code>CSS</code>, you just need add <code>ladep=1</code> to HTML tag <code>&lt;style&gt;</code>. That's all, it's totally transparent to developers again.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Fetch exception logs</div>
+                <div class="text">
+                    <p>With more considerations, Ladep can also help you fetch Laravel exception logs from multi-server for all projects with one-key. So, you can easily diagnose all of your projects without logging on the remote servers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">View status</div>
+                <div class="text">
+                    <p>Ladep help you list all tags/versions of your project from multi-server with one-key. So, you can easily see all tags/versions and which tag/version is on service without logging on the remote servers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item col-md-4">
+            <div class="box">
+                <div class="title text-left">Protect DB accounts</div>
+                <div class="text">
+                    <p>All database connection parameters will be assembled automatically while your project was being built on deployer server. And, Ladep assembles them for develop, pre-production and production servers individually.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row gap">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+
+        <!--
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+        <div class="line col-xs-10 col-sm-10 col-md-10 col-lg-10"><hr /></div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+
+        <div>&nbsp;</div>
+                -->
+    </div>
+</div>
+
+
+<a name="install"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box text-uppercase">Install</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">Via CURL</div>
+        <div class="blockgray">$ curl -LSs https://raw.githubusercontent.com/dekuan/ladep/master/tools/install.php | sudo php</div>
+
+        <div class="text">Via WGET</div>
+        <div class="blockgray">$ wget https://raw.githubusercontent.com/dekuan/ladep/master/tools/install.php -O - | sudo php</div>
+    </div>
+</div>
+
+
+<div class="container-fluid">&nbsp;</div>
+
+
+<a name="sourcecode"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box text-uppercase">Source code</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">Take a look at the code on github and see what we are up to.</div>
+        <div class="blockgray"><a href="https://github.com/dekuan/ladep">https://github.com/dekuan/ladep</a></div>
+
+        <div class="text">Or, you can use the following command to clone Ladep from GitHub:</div>
+        <div class="blockgray">$ git clone https://github.com/dekuan/ladep.git</div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+<div class="container-fluid">
+    <div class="row mainbutton">
+        <div class="text-center">
+            <a href="/docs" class="hbtn text-uppercase">View Documentation</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+<div class="container-fluid roundbottom">&nbsp;</div>
+
+
+<div class="container-fluid">
+    <div class="row footer">
+        <div class="tech col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <div class="line text-left">
+                <a href="https://github.com/dekuan/ladep" class="wlink">Github</a>
+            </div>
+            <div class="line text-left">
+                <a href="http://www.php.net/" class="wlink">PHP</a>
+            </div>
+            <div class="line text-left">
+                <a href="https://getcomposer.org" class="wlink">Composer</a>
+            </div>
+            <div class="line text-left">
+                <a href="https://laravel.com" class="wlink">Laravel Framework</a>
+            </div>
+            <div class="line text-left">
+                <a href="http://www.json.org" class="wlink">JSON</a>
+            </div>
+            <div class="line text-left">
+                <a href="http://yui.github.io/yuicompressor/" class="wlink">YUI Compressor</a>
+            </div>
+        </div>
+        <div class="text-right col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <a href="http://www.dekuan.org" target="_blank"><img src="/images/logo_dekuan_w-s.png" style="width:32px;" border="0" /></a>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            &nbsp;
+        </div>
+        <div class="copyright text-right col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @ 2016 DeKuan, Inc.
+            <br />
+            Contacts Us: dev@dekuan.org&nbsp;
+        </div>
+    </div>
+</div>
+
+
+<div style="display:none;">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85708421-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</div>
+
+</body>
+</html>

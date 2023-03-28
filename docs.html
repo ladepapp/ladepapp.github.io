@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <title>Ladep / Laravel Deployer</title>
+
+    <!-- Bootstrap -->
+    <link href="/components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" ladep="1" />
+    <link href="/css/style.css" rel="stylesheet" ladep="1" />
+
+    <script type="text/javascript" src="/components/jquery/dist/jquery.js" ladep="1"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--
+    <script type="text/javascript" src="/components/bootstrap/dist/js/bootstrap.js" ladep="0"></script>
+    -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--
+    <script type="text/javascript" src="/components/html5shiv/dist/html5shiv.js" ladep="0"></script>
+    <script type="text/javascript" src="/components/respond/src/respond.js" ladep="0"></script>
+    -->
+    <![endif]-->
+
+    <!--
+    <script type="text/javascript" src="/components/angular/angular.js" ladep="0"></script>
+    -->
+</head>
+<body>
+
+<a name="top"></a>
+
+<div class="container-fluid">
+    <div class="row header">
+        @if ( '/' != $uri && '' != $uri )
+        <div class="hback">
+            <a href="/" class="wlink"><img src="/images/nav_back.png" border="0"/></a>
+        </div>
+        @else
+        <div class="logo">
+            <a href="/">
+                <img src="/images/rocketship_icon_ladep_text.png" />
+            </a>
+        </div>
+        @endif
+        <div class="hcnt text-right">
+            <a href="/#sourcecode" class="wlink">Source Code</a>
+            <a href="/docs" class="wlink">Documentation</a>
+        </div>
+        <div class="hmenu nav-menu-icon text-right">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid roundtop" style="height: 5px;"></div>
+
+
+<a name="menu"></a>
+<div class="container-fluid">
+    <div class="row textnode menu">
+        <div class="title">
+            <div class="box">Documentation</div>
+        </div>
+
+        <div class="text">
+            <ul class="menu-level1">
+                <li><a href="#howitworks">How It Works?</a></li>
+                <ul class="menu-level2">
+                    <li><a href="#howitworks1">How does Ladep build your project?</a></li>
+                    <li><a href="#howitworks2">How does Ladep push your project to the target servers?</a></li>
+                    <li><a href="#howitworks3">What does the directory structure on the target server looks like?</a></li>
+                </ul>
+                <li><a href="#requires">Requires</a></li>
+                <li><a href="#deploykey">Deploy key</a></li>
+                <li><a href="#projectfile">Project file</a></li>
+                <li><a href="#command">Command</a></li>
+                <ul class="menu-level2">
+                    <li><a href="#command-build">build</a></li>
+                    <li><a href="#command-push">push</a></li>
+                    <li><a href="#command-rollback">rollback</a></li>
+                    <li><a href="#command-view">view</a></li>
+                    <li><a href="#command-pulllog">pulllog</a></li>
+                    <li><a href="#command-selfupdate">selfupdate</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+<a name="howitworks"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box">How It Works?</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">Ladep works with SSH, GIT, rsync, composer, Java. The following is the main workflow.</div>
+        <div class="text">
+            <img class="img-workflow desaturate" src="/images/ladep_workflow.png" />
+            <br />
+            <br />
+        </div>
+
+        <a name="howitworks1"></a>
+        <div class="text"><strong>How does Ladep build your project?</strong></div>
+        <div class="text">
+            <ol>
+                <li>Fetch source code from the GIT repository to your deploy server.</li>
+                <li>Create an .env file for Laravel Framework.</li>
+                <li>Assemble file <code>config/app.php</code> to your project.</li>
+                <li>Install all composers.</li>
+                <li>Assemble file <code>config/database.php</code> to your project.</li>
+                <li>Assemble file <code>config/session.php</code> to your project.</li>
+                <li>Assemble file <code>public/.htaccess</code> to your project.</li>
+                <li>Assemble user customized HTTP error pages to your project.</li>
+                <li>Scan all JavaScript files by tag <code>ladep=1</code> from all views, and then, try to compress and confuse them, and finally, try to inject the compressed stream into the views.</li>
+                <li>Scan all CSS files by tag <code>ladep=1</code> from all views, and then, try to compress them and inject the compressed stream into the views.</li>
+                <li>Clean up unnecessary files.</li>
+                <li>All done.</li>
+            </ol>
+            <br />
+        </div>
+
+        <a name="howitworks2"></a>
+        <div class="text"><strong>How does Ladep push your project to the target servers?</strong></div>
+        <div class="text">
+            <ol>
+                <li>Create a new directory by version(GIT tag) in the <code>releases</code> directory on the target server if it does not exists.</li>
+                <li>Use command <code>rsync</code> to upload files of the project to the directory on the target servers.</li>
+                <li>Set file modes on the target servers to make the project works well.</li>
+                <li>Remove soft link <code>wwwroot</code> on the target server if it already exists.</li>
+                <li>Create new soft link <code>wwwroot</code> to the new uploaded directory on the target server.</li>
+                <li>Create a tar archive for the previous version and remove and remove existing files to save the system inode.</li>
+                <li>Okay, a new version was released.</li>
+            </ol>
+            <br />
+        </div>
+
+        <a name="howitworks3"></a>
+        <div class="text"><strong>What does the directory structure on the target server looks like?</strong></div>
+        <div class="blockgray fs14">
+/your/project/directory/<br />
+|--releases<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;|--1.0.5<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;|--1.0.4-_-20160512093356.tar<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;|--1.0.3-_-20160510195125.tar<br />
+|--<code>wwwroot</code> -> /your/project/directory/releases/1.0.5/<br />
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+<a name="requires"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box">Requires</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">In order to deploy your projects by Ladep, all required things are here:</div>
+        <div class="text">
+            <ul>
+                <li>
+                    Your projects must be stored in a git repository
+                    <div class="imgdiv">
+                        <img src="/images/software_git.png" class="img-rounded desaturate" />
+                    </div>
+                </li>
+                <li>
+                    Your projects must be written by Laravel Framework
+
+                    <div class="imgdiv">
+                        <img src="/images/software_laravel.png" class="img-rounded desaturate" />
+                        <img src="/images/software_composer.png" class="img-rounded desaturate" />
+                    </div>
+
+                </li>
+                <li>
+                    An individual and isolated deploy server with Linux/Unix/Mac OS X, SSH, rsync, MySQL, Java installed
+
+                    <div class="imgdiv">
+                        <!--
+                        <img src="/images/software_ubuntu.png" class="img-rounded desaturate" />
+                        -->
+                        <img src="/images/software_ssh.png" class="img-rounded desaturate" />
+                        <img src="/images/software_rsync.png" class="img-rounded desaturate" />
+                        <img src="/images/software_mysql.png" class="img-rounded desaturate" />
+                        <img src="/images/software_java.png" class="img-rounded desaturate" />
+                    </div>
+
+                    <div class="text">
+                        And a MySQL database must be created for project testing. Please execute the following commands in your MySQL environment:
+                    </div>
+
+                    <div class="blockgray">
+                        $ create database homestead;
+                        <br />
+                        $ grant ALL privileges on homestead.* to 'homestead'@'localhost' identified by 'secret';
+                        <br />
+                        $ FLUSH PRIVILEGES;
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+<!--
+<a name="install"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box">Environments</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">We recommended that you'd better deploy the following environments for safer and more comfortable code deploying.</div>
+        <div class="line-row split blocktext bg-success">
+            <div class="name text-center">Local</div>
+            <div class="hint text-center">engineers' personal computer</div>
+        </div>
+
+        <div class="line-row blocktext bg-warning">
+            <div class="name text-center">Development Servers</div>
+            <div class="hint text-center">for engineers debugging together</div>
+        </div>
+        <div class="line-row blocktext bg-warning split">
+            <div class="name text-center">Test Servers</div>
+            <div class="hint text-center">for test engineers testing together</div>
+        </div>
+
+
+        <div class="line-row blocktext bg-info">
+            <div class="name text-center">Pre-production Servers</div>
+            <div class="hint text-center">almost the production servers for the final testing</div>
+        </div>
+        <div class="line-row blocktext bg-info">
+            <div class="name text-center">Production Servers</div>
+            <div class="hint text-center">online production servers</div>
+        </div>
+
+    </div>
+</div>
+<div>&nbsp;</div>
+-->
+
+<a name="deploykey"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box">Deploy key</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">
+            In order to transmit data safely, Ladep use SSH to do that between your deploy server and production servers.
+            So, we must put the SSH public key of deploy server to all of your production servers.
+        </div>
+        <div class="text">
+            The current user's SSH public key is located in <code>~/.ssh/id_rsa.pub</code> on your deploy server.
+            <br />
+            You can execute the following command to generate a new one if it does not exists:
+        </div>
+        <div class="blockgray">$ ssh-keygen -t rsa</div>
+        <div class="text">
+            <br />
+            On production servers, try to append the SSH public key to <code>~/.ssh/authorized_keys</code> if it does not exists.
+            <br />
+            And, don't forget to set the permission for the file:
+
+        </div>
+        <div class="blockgray">$ chmod 600 ~/.ssh/authorized_keys</div>
+        <div class="text">
+            <br />
+            For more information, please view :<br />
+            <a href="https://help.dreamhost.com/hc/en-us/articles/216499537-How-to-configure-passwordless-login-in-Mac-OS-X-and-Linux" target="_blank" class="uline">How to configure passwordless login in Mac OS X and Linux</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+
+<a name="projectfile"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box">Project file</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <div class="text">The structure of a project file like this:</div>
+        <pre class="blockgray fs14" style="line-height: 16px;">
+{
+    "name"	: "cn.ladep.www",
+    "repo"	:
+    {
+            "url"	: "https://github.com/dekuan/cn.ladep.git",
+            "ver"	: "1.0.6"
+    },
+    "server" :
+    {
+        "config" :
+        {
+            "url"	: "/etc/ladep/config/production/cn.ladep.www/",
+            "type"	: "file"
+        },
+        "list" :
+        [
+            {
+                "host"	: "111.111.111.111",
+                "user"	: "worker",
+                "pwd"   : "",
+                "dm"	: "www.ladep.cn",
+                "path"	: "/var/www/cn.ladep.www/"
+            }
+        ]
+    }
+}</pre>
+        <div class="text"><a href="/download/ladep.config.zip" class="uline">Download demo project and configuration files</a></div>
+
+        <div class="text">
+            <br />
+            <strong>Description</strong>
+        </div>
+        <div class="text">
+            ["name"]
+            <div>
+            The name of your project, it can be any string you like, for example: cn.ladep.www, ladep-website.
+            </div>
+        </div>
+
+        <div class="text">
+            ["repo"]
+            <div>
+            Specify Git repository.
+            </div>
+        </div>
+        <div class="text">
+            ["repo"]["url"]
+            <div>
+            Specify url of the Git repository.
+            </div>
+        </div>
+        <div class="text">
+            ["repo"]["ver"]
+            <div>
+                Specify version/tag of the Git repository you want to build.
+                <div class="blockgray">
+                Notes:
+                <br />
+                If you specify option <code>--last</code> for command <code>build</code>, this parameter will be ignored and be replaced with the latest version/tag obtained from Git repository in real-time.
+                <br />
+                For example:
+                <br />
+                $ ladep build project/production/cn.ladep.www --last
+                </div>
+            </div>
+        </div>
+
+        <div class="text">
+            ["server"]
+            <div>
+                Specify target server.
+            </div>
+        </div>
+
+        <div class="text">
+            ["server"]["config"]
+            <div>
+                Specify location of a directory that contains the configuration files for the target server.
+            </div>
+        </div>
+        <div class="text">
+            ["server"]["config"]["url"]
+            <div>
+                Specify location of a directory that contains the configuration files. Usually, this directory contains file app.php, database.php, .htaccess.
+                <div class="blockgray">
+                    app.php
+                    <div class="blockquote">
+                    Specify any customized configurations in this file for the target server that may different from your local or development server.
+                    </div>
+                    database.php
+                    <div class="blockquote">
+                    Specify database connection parameters in this file for the target server that may different from your local or development server.
+                    </div>
+                    .htaccess
+                    <div class="blockquote">
+                    Specify URL rewrite rules and other options for the target server.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="text">
+            ["server"]["config"]["type"]
+            <div>
+                Specify type of the location. This is always "file" so far.
+            </div>
+        </div>
+
+        <div class="text">
+            ["server"]["list"]
+            <div>
+                Specify one or more target server(s). The description of the server node is listed below:
+                <div class="blockgray">
+                    {
+                    <div class="blockquote">
+                        ["host"] : "111.111.111.111",
+                        <br />
+                        The IP address of one target server.
+                        <br />
+                        <br />
+
+                        ["user"] : "worker",
+                        <br />
+                        The owner name of your project, this is usually an user name of Linux/Unix/Max OS X. Ladep use it to log on the target server via SSH. By the way, we strongly recommended that you shouldn't use root user.
+                        <br />
+                        <br />
+
+                        ["pwd"] : "",
+                        <br />
+                        This parameter is useless so far, please maintain it as empty. Ladep transmits data in passwordless mode. For more information, please see <a href="#deploykey" class="uline">Deploy key</a>
+                        <br />
+                        <br />
+
+                        ["dm"] : "www.ladep.cn",
+                        <br />
+                        The domain name of your project. It's usually a domain name of your web service.
+                        <br />
+                        <br />
+
+                        ["path"] : "/var/www/cn.ladep.www/"
+                        <br />
+                        The location of a directory of your project on target server. It might be used by Apache, Nginx, Lighttpd or other HTTP daemons. So, it's usually a website directory.
+                        <br />
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+<a name="command"></a>
+<div class="container-fluid">
+    <div class="row textnode">
+        <div class="title">
+            <div class="box">Command</div>
+            <div class="back text-right">
+                <a href="#top">TOP</a>
+            </div>
+        </div>
+
+        <a name="command-build"></a>
+        <div class="text"><strong><code>build</code></strong></div>
+        <div class="text">
+            Fetch source code by version/tag from your GIT repository and build it.
+            <br />
+            Options:
+            <div class="blockquote">
+                <code><i>--last</i></code>
+                <br />
+                If this option was specified, Ladep will obtain the latest version/tag from your Git repository in real-time. The version/tag in project file will be ignored.
+                <br />
+                <code><i>--no-compress-js</i></code>
+                <br />
+                If this option was specified, Ladep will give up to scan and compress JavaScript.
+                <br />
+                <code><i>--no-compress-css</i></code>
+                <br />
+                If this option was specified, Ladep will give up to scan and compress CSS.
+
+            </div>
+
+        </div>
+        <div class="text">
+            For example, to build the latest version:
+        </div>
+        <div class="blockgray">$ ladep build project/production/cn.ladep.www.ladep --last</div>
+        <div class="text"><br /></div>
+
+
+
+        <a name="command-push"></a>
+        <div class="text"><strong><code>push</code></strong></div>
+        <div class="text">
+            push a built project to target server.
+            <br />
+            Options:
+            <div class="blockquote">
+                <code><i>--last</i></code>
+                <br />
+                Ladep will obtain the latest version/tag from your Git repository in real-time. The version/tag in project file will be ignored.
+            </div>
+
+        </div>
+        <div class="text">
+            For example, to push the latest version to your production server(s):
+        </div>
+        <div class="blockgray">$ ladep push project/production/cn.ladep.www.ladep --last</div>
+        <div class="text"><br /></div>
+
+
+        <a name="command-rollback"></a>
+        <div class="text"><strong><code>rollback</code></strong></div>
+        <div class="text">
+            rollback a project to specialized version/tag.
+            <br />
+            For example, to rollback your project to version 1.0.1:
+        </div>
+        <div class="blockgray">$ ladep rollback project/production/cn.ladep.www.ladep 1.0.1</div>
+        <div class="text"><br /></div>
+
+
+        <a name="command-view"></a>
+        <div class="text"><strong><code>view</code></strong></div>
+        <div class="text">
+            view all versions/tags on target server.
+            <br />
+            For example, to view all versions on your production server(s):
+        </div>
+        <div class="blockgray">$ ladep view project/production/cn.ladep.www.ladep</div>
+        <div class="text"><br /></div>
+
+
+        <a name="command-pulllog"></a>
+        <div class="text"><strong><code>pulllog</code></strong></div>
+        <div class="text">
+            pull laravel exception logs of all projects to local.
+            <br />
+            For example, to pull all log files to local machine:
+        </div>
+        <div class="blockgray">$ ladep pulllog</div>
+        <div class="text"><br /></div>
+
+
+        <a name="command-selfupdate"></a>
+        <div class="text"><strong><code>selfupdate</code></strong></div>
+        <div class="text">
+            Update Ladep itself to the latest version.
+        </div>
+        <div class="blockgray">$ ladep selfupdate</div>
+        <div class="text"><br /></div>
+
+    </div>
+</div>
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+<div class="container-fluid">&nbsp;</div>
+<div class="container-fluid">&nbsp;</div>
+
+
+
+<div class="container-fluid roundbottom">&nbsp;</div>
+
+
+<div class="container-fluid">
+    <div class="row footer">
+        <div class="tech col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <div class="line text-left">
+                <a href="https://github.com/dekuan/ladep" class="wlink">Github</a>
+            </div>
+            <div class="line text-left">
+                <a href="http://www.php.net/" class="wlink">PHP</a>
+            </div>
+            <div class="line text-left">
+                <a href="https://getcomposer.org" class="wlink">Composer</a>
+            </div>
+            <div class="line text-left">
+                <a href="https://laravel.com" class="wlink">Laravel Framework</a>
+            </div>
+            <div class="line text-left">
+                <a href="http://www.json.org" class="wlink">JSON</a>
+            </div>
+            <div class="line text-left">
+                <a href="http://yui.github.io/yuicompressor/" class="wlink">YUI Compressor</a>
+            </div>
+        </div>
+        <div class="text-right col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <a href="http://www.dekuan.org" target="_blank"><img src="/images/logo_dekuan_w-s.png" style="width:32px;" border="0" /></a>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            &nbsp;
+        </div>
+        <div class="copyright text-right col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @ 2016 DeKuan, Inc.
+            <br />
+            Contacts Us: dev@dekuan.org&nbsp;
+        </div>
+    </div>
+</div>
+
+
+<div style="display:none;">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85708421-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</div>
+
+</body>
+</html>
